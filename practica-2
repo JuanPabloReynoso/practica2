@@ -1,0 +1,70 @@
+create database EmpresaDevJav;
+use EmpresaDevJav;
+create table departamentos
+(codDpto int(5), nombreDpto varchar (20), ciudad  varchar(20), director varchar(20),primary key (codDpto));
+describe departamentos;
+create table empleado
+(nDIEmp int(20), nomEmp varchar(20), sexEmp char(1), fecNac date, fecIncorporacion date, salEmp int(10), comis int(10), cargo varchar(20), nroDepto int(5));
+describe empleado;
+insert into departamentos
+values
+(1000,"Gerencia","Buenos Aires",31840269),
+(5105,"Administración","Buenos aires",31200420),
+(1313,"Soporte Tecnico","La Matanza",39433312),
+(5321,"Compra y venta","3 de febrero",42678921),
+(1955,"Recursos humanos","Devoto",32456822);
+
+insert into empleado
+values
+(311178144,"Rosa Angulo","F",19570315,20220816,725000,40000,"Jefe de ventas",1000),
+(285205582,"Juan Pedro","M",19800629,20200718,930000,90000,"Gerente",2300),
+(334330982,"Sofia Perez","F",20000118,20230920,700000,78000,"Recursos humanos",3000),
+(37431232,"Patricia Lopez","F",19800302,20210505,670000,60000,"Administrativa",3001),
+(344478144,"Jose Gomez","M",19770515,20220316,725000,40000,"Jefe de ventas",1000);
+select *from empleado;
+
+select nomEmp from empleado;
+select *from departamentos;
+select *from empleado where cargo = "Jefe de ventas";
+select count(nDIEmp) from empleado;
+select avg(salEmp) from empleado;
+
+select nombreDpto, ciudad from departamentos order by ciudad;
+
+select salEmp, comis from empleado where nroDepto = 1000;
+
+select
+
+    salEmp,
+    salEmp+(salEmp*0.25) AS bonificacion,
+    salEmp *0.25 + 20000 AS aumentoTotal,
+    salEmp + (salEmp * 0.25) + 20000 AS nuevoSalario
+from
+    empleado;
+    
+update empleado
+set salEmp = salEmp + (salEmp * 0.25) + 20000; 
+
+update departamentos
+set ciudad = "Martinez";
+
+select salEmp from empleado where nDIEmp = 311178144;
+
+
+select nomEmp
+from empleado
+where nomEmp like 'A%';
+
+select nomEmp
+from empleado
+where comis = 0;
+
+select nomEmp	
+from empleado
+where salEmp between 900000 and 500000000;
+
+select nomEmp, max(salEmp)
+from empleado;
+
+delete from empleado
+where nDIEmp = 37431232;
